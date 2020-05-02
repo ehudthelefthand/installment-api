@@ -9,7 +9,7 @@ const bcrypt = require("bcrypt");
 const app = express();
 const port = 3001;
 
-// IMPORTANT!
+// CAUTION!
 // The code showed here is not for production ready
 // It is used for illustrate the simple structure of the appliction
 // And authentication flow
