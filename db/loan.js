@@ -1,3 +1,4 @@
+const { v4: uuid } = require("uuid");
 const { users, loanMap } = require("./store");
 
 const create = async ({ staffID, amount, date }) => {
@@ -18,7 +19,11 @@ const remove = async ({ staffID, loanID }) => {
   if (!loanMap[staffID]) {
     return;
   }
-  loanMap[staffID] = loanMap[staffID].filter((loan) => loan.id !== loanID);
+  const index = loanMap[staffID].findIndex((loan) => loan.id === loanID);
+  if (index === -1) {
+    throw new Error("Loan no found");
+  }
+  loanMap[staffID].splice(index, 1);
 };
 
 const update = async ({ staffID, loanID, amount, date }) => {

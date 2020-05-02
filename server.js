@@ -158,7 +158,7 @@ app.post("/loans", auth.requiredUser, async (req, res, next) => {
   }
 });
 
-app.update("/loans/:id", auth.requiredUser, async (req, res, next) => {
+app.patch("/loans/:id", auth.requiredUser, async (req, res, next) => {
   const user = req.User;
   const loanID = req.params.id;
   const { amount, date } = req.body;
@@ -203,6 +203,27 @@ app.delete("/loans/:id", auth.requiredUser, async (req, res, next) => {
 const router = express.Router();
 
 app.use("/admin", auth.requiredAdmin, router);
+
+router.post("/staffs", async (req, res, next) => {
+  const { username, password } = req.body;
+  try {
+    let staff = await userDB.create({ username, password, role: "staff" });
+    refreshToken = token.generateRefreshToken({
+      user_id: staff.id,
+      role: "staff",
+    });
+    staff = { ...staff, refreshToken };
+    staff = await userDB.update(staff);
+    accessToken = token.generateAccessToken({
+      user_id: staff.id,
+      role: "staff",
+    });
+    staff = { ...staff, accessToken };
+    res.json({ data: staff });
+  } catch (e) {
+    next(e);
+  }
+});
 
 router.get("/staffs", async (req, res, next) => {
   try {

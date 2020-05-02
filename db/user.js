@@ -27,11 +27,11 @@ const updatePassword = async ({ id, password }) => {
     const index = users.findIndex((user) => {
       return user.id === id;
     });
-    if (index !== -1) {
-      const user = users[index];
-      users[index] = { ...user, passwordHash };
-      return users[index];
+    if (index === -1) {
+      throw new Error("User no found");
     }
+    users[index] = { ...users[index], password: passwordHash };
+    return users[index];
   } catch (e) {
     throw e;
   }
@@ -52,7 +52,11 @@ const list = async (role) => {
 };
 
 const remove = async (id) => {
-  users = users.filter((user) => user.id !== id);
+  const index = users.findIndex((user) => user.id === id);
+  if (index === -1) {
+    throw new Error("User not found");
+  }
+  users.splice(index, 1);
 };
 
 const getByID = async (id) => {

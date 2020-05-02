@@ -19,7 +19,7 @@ const requiredAdmin = async (req, res, next) => {
   if (!claims) {
     return res.sendStatus(401);
   }
-  if (claims.role !== "admin" && claims.type !== "access") {
+  if (claims.role !== "admin" || claims.type !== "access") {
     return res.sendStatus(401);
   }
 
@@ -36,7 +36,7 @@ const requiredAdmin = async (req, res, next) => {
   }
 };
 
-const requiredUser = (req, res, next) => {
+const requiredUser = async (req, res, next) => {
   const tk = getToken(req);
   if (!tk) {
     return res.sendStatus(401);
