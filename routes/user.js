@@ -32,6 +32,7 @@ const init = (app) => {
       res.json({
         data: {
           name: user.name,
+          role: user.role,
           refreshToken,
           accessToken,
         },
@@ -41,10 +42,10 @@ const init = (app) => {
     }
   });
 
-  app.get("/sessions", Auth.requiredUser, async (req, res, next) => {
+  app.get("/profile", Auth.requiredUser, async (req, res, next) => {
     res.json({
       name: req.User.name,
-      refreshToken: req.User.refreshToken,
+      role: user.role,
     });
   });
 
