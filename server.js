@@ -41,6 +41,10 @@ app.use(
 );
 app.use(bodyParser.json());
 
+app.get("/", (req, res) => {
+  res.send("ok");
+});
+
 userRoute.init(app);
 loanRoute.init(app);
 repayRoute.init(app);
