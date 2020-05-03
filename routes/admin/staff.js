@@ -1,41 +1,80 @@
 const express = require("express");
+const bcrypt = require("bcrypt");
+const Token = require("../../token");
+const User = require("../../models/user");
+const cost = 12;
+
+const ROLE = {
+  ADMIN: "admin",
+  STAFF: "staff",
+};
 
 const init = (app) => {
   const router = express.Router();
   app.use("/staffs", router);
 
-  router.post("/staffs", async (req, res, next) => {
-    const { username, password } = req.body;
+  router.post("/", async (req, res, next) => {
+    const { name, username, password } = req.body;
     try {
-      let staff = await userDB.create({ username, password, role: "staff" });
-      refreshToken = token.generateRefreshToken({
-        user_id: staff.id,
-        role: "staff",
+      const passwordHash = await bcrypt.hash(password, cost);
+      const staff = new User({
+        name,
+        username,
+        password: passwordHash,
+        role: ROLE.STAFF,
       });
-      staff = { ...staff, refreshToken };
-      staff = await userDB.update(staff);
-      accessToken = token.generateAccessToken({
-        user_id: staff.id,
-        role: "staff",
+      await staff.save();
+      const refreshToken = Token.generateRefreshToken({
+        userID: staff._id,
+        role: ROLE.STAFF,
       });
-      staff = { ...staff, accessToken };
-      res.json({ data: staff });
+      staff.refreshToken = refreshToken;
+      await staff.save();
+
+      const accessToken = Token.generateAccessToken({
+        userID: staff._id,
+        role: ROLE.STAFF,
+      });
+      res.json({
+        data: {
+          name: staff.name,
+          role: staff.role,
+          refreshToken: staff.refreshToken,
+          accessToken,
+        },
+      });
     } catch (e) {
       next(e);
     }
   });
 
-  router.get("/staffs", async (req, res, next) => {
+  router.get("/:id", async (req, res, next) => {
     try {
-      let staffs = await userDB.list("staff");
-      staffs = staffs.map(({ id, username, role }) => ({ id, username, role }));
-      res.json({ data: staffs });
+      const staff = await User.findById(id).exec();
+      res.json({
+        data: {
+          _id: staff._id,
+          name: staff.name,
+          role: staff.role,
+        },
+      });
     } catch (e) {
       next(e);
     }
   });
 
-  router.patch("/staffs/:id", async (req, res, next) => {
+  router.get("/", async (req, res, next) => {
+    try {
+      const staffs = await User.find({ role: ROLE.STAFF }).exec();
+      res.json({
+        data: staffs.map(({ _id, name, role }) => ({ _id, name, role })),
+      });
+    } catch (e) {
+      next(e);
+    }
+  });
+
+  router.patch("/:id", async (req, res, next) => {
     const staffID = req.params["id"];
     const { password } = req.body;
     try {
@@ -46,7 +85,7 @@ const init = (app) => {
     }
   });
 
-  router.delete("/staffs/:id", async (req, res, next) => {
+  router.delete("/:id", async (req, res, next) => {
     const staffID = req.params["id"];
     try {
       await userDB.remove(staffID);

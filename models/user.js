@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
   name: String,
-  username: String,
+  username: { type: String, index: true, unique: true },
   password: String,
-  refreshToken: String,
+  refreshToken: { type: String, index: true, unique: true },
   role: String,
   loans: [{ type: Schema.Types.ObjectId, ref: "Loan" }],
   repay: [{ type: Schema.Types.ObjectId, ref: "Repay" }],
