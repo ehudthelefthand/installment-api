@@ -1,11 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-// const auth = require("./mw/auth");
-// const userDB = require("./db/user");
-// const loanDB = require("./db/loan");
-// const token = require("./token");
-// const bcrypt = require("bcrypt");
 
 const userRoute = require("./routes/user");
 const loanRoute = require("./routes/loan");
