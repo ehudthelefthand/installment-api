@@ -18,7 +18,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Top\",\n\t\"username\": \"staff1\",\n\t\"password\": \"password\"\n}",
+					"raw": "{\n\t\"name\": \"Eiei\",\n\t\"username\": \"staff1\",\n\t\"password\": \"password\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -147,7 +147,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"username\": \"staff1\",\n\t\"password\": \"password\"\n}",
+					"raw": "{\n\t\"username\": \"admin\",\n\t\"password\": \"password\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -473,12 +473,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{host}}/sessions",
+					"raw": "{{host}}/profile",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"sessions"
+						"profile"
 					]
 				}
 			},

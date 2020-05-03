@@ -43,8 +43,9 @@ const init = (app) => {
   });
 
   app.get("/profile", Auth.requiredUser, async (req, res, next) => {
+    const user = req.User;
     res.json({
-      name: req.User.name,
+      name: user.name,
       role: user.role,
     });
   });
