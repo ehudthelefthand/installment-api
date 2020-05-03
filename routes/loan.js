@@ -13,9 +13,11 @@ const init = (app) => {
       const loan = new Loan({
         amount,
         date,
-        loaner: user,
+        loaner: user._id,
       });
       await loan.save();
+      user.loans.push(loan._id);
+      await user.save();
       res.json({
         data: {
           _id: loan._id,
@@ -44,7 +46,6 @@ const init = (app) => {
     } catch (e) {
       next(e);
     }
-    res.json({ data: [] });
   });
 
   router.get("/", Auth.requiredStaff, async (req, res, next) => {

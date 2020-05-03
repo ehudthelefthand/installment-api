@@ -1,68 +1,57 @@
 const express = require("express");
 const staffRoute = require("./staff");
+const User = require("../../models/user");
 
 const init = (app) => {
   const router = express.Router();
   app.use("/admin", router);
   staffRoute.init(router);
 
-  // router.post("/init", async (req, res) => {
-  //   let staff, admin, refreshToken, accessToken;
+  router.get("/loans", async (req, res, next) => {
+    try {
+      const staffs = await User.find({ role: "staff" })
+        .populate("loans")
+        .exec();
+      res.json({
+        data: staffs.map(({ _id, name, loans, repays }) => {
+          return {
+            _id,
+            name,
+            loans: loans.map(({ _id, amount, date }) => ({
+              _id,
+              amount,
+              date,
+            })),
+          };
+        }),
+      });
+    } catch (e) {
+      next(e);
+    }
+  });
 
-  //   // Staff
-  //   staff = await userDB.create({
-  //     username: "staff1",
-  //     password: "password",
-  //     role: "staff",
-  //   });
-  //   refreshToken = token.generateRefreshToken({
-  //     user_id: staff.id,
-  //     role: "staff",
-  //   });
-  //   staff = { ...staff, refreshToken };
-  //   staff = await userDB.update(staff);
-  //   accessToken = token.generateAccessToken({
-  //     user_id: staff.id,
-  //     role: "staff",
-  //   });
-  //   staff = { ...staff, accessToken };
-
-  //   // Admin
-  //   admin = await userDB.create({
-  //     username: "admin",
-  //     password: "password",
-  //     role: "admin",
-  //   });
-  //   refreshToken = token.generateRefreshToken({
-  //     user_id: admin.id,
-  //     role: "admin",
-  //   });
-  //   admin = { ...admin, refreshToken };
-  //   admin = await userDB.update(admin);
-  //   accessToken = token.generateAccessToken({
-  //     user_id: admin.id,
-  //     role: "admin",
-  //   });
-  //   admin = { ...admin, accessToken };
-
-  //   res.json({
-  //     data: {
-  //       admin,
-  //       staff,
-  //     },
-  //   });
-  // });
-
-  // router.get("/loans", async (req, res, next) => {
-  //   try {
-  //     const loans = await loanDB.listAll();
-  //     res.json({
-  //       data: loans,
-  //     });
-  //   } catch (e) {
-  //     next(e);
-  //   }
-  // });
+  router.get("/repays", async (req, res, next) => {
+    try {
+      const staffs = await User.find({ role: "staff" })
+        .populate("repays")
+        .exec();
+      res.json({
+        data: staffs.map(({ _id, name, loans, repays }) => {
+          return {
+            _id,
+            name,
+            repays: repays.map(({ _id, amount, date }) => ({
+              _id,
+              amount,
+              date,
+            })),
+          };
+        }),
+      });
+    } catch (e) {
+      next(e);
+    }
+  });
 };
 
 module.exports = {

@@ -8,7 +8,7 @@ const UserSchema = new Schema({
   refreshToken: { type: String, index: true, unique: true },
   role: String,
   loans: [{ type: Schema.Types.ObjectId, ref: "Loan" }],
-  repay: [{ type: Schema.Types.ObjectId, ref: "Repay" }],
+  repays: [{ type: Schema.Types.ObjectId, ref: "Repay" }],
 });
 
 module.exports = mongoose.model("User", UserSchema);
