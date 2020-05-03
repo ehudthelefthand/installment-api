@@ -1,0 +1,522 @@
+{
+	"info": {
+		"_postman_id": "758f720b-1038-45ba-9d99-12f17d14bf3f",
+		"name": "Vue.js Class",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYWI1NWQyZTUtMTJiMi00ZWVjLTliYzQtYzU0NjA1YjdkMjNiIiwicm9sZSI6ImFkbWluIiwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTU4ODQzNTI4OSwiZXhwIjoxNTg4NDM4ODg5fQ.nX4OhYmxVY_YA8rO4MfO0hRFav1AWpFktrgkXWrEbXw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Top\",\n\t\"username\": \"staff1\",\n\t\"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/admin/staffs",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"admin",
+						"staffs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get One Staff",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/admin/staffs/5eae7f715ed5d3c2c98b5268",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"admin",
+						"staffs",
+						"5eae7f715ed5d3c2c98b5268"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Staff",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMGEwZjQ1MGQtMDZlZS00ZjE5LTk3NDgtOWQ0NThkOTgzNzM0Iiwicm9sZSI6ImFkbWluIiwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTU4ODQzNjU4MiwiZXhwIjoxNTg4NDQwMTgyfQ.y6aHhbfLbCn0MNyrx014zAJUe_xz36g-q4AhgEaUkZg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/admin/staffs",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"admin",
+						"staffs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Staff",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMjM5YjZkZmItNjZmYy00NGFhLThkNjgtNDAyZDBlMzhkN2RmIiwicm9sZSI6ImFkbWluIiwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTU4ODQzNTA0MCwiZXhwIjoxNTg4NDM4NjQwfQ.sJCZNtFm7jE4Z3q0Y5LVBKAAxCaHFMrWwAFY3nTB8u4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/admin/staffs/5eae77f85c878bbfc108ef9e",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"admin",
+						"staffs",
+						"5eae77f85c878bbfc108ef9e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update  Staff",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMjM5YjZkZmItNjZmYy00NGFhLThkNjgtNDAyZDBlMzhkN2RmIiwicm9sZSI6ImFkbWluIiwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTU4ODQzNTA0MCwiZXhwIjoxNTg4NDM4NjQwfQ.sJCZNtFm7jE4Z3q0Y5LVBKAAxCaHFMrWwAFY3nTB8u4"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Pongneng X\",\n\t\"password\": \"password2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/admin/staffs/5eae75ddc8e57cbd285eabdf",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"admin",
+						"staffs",
+						"5eae75ddc8e57cbd285eabdf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"staff1\",\n\t\"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZTJhMzNmZjUtZWQ4ZC00ZDk5LWJiZDgtMzQ3YTJlZDg5MzA3Iiwicm9sZSI6InN0YWZmIiwidHlwZSI6InJlZnJlc2giLCJpYXQiOjE1ODg0MzY1ODF9.Nc-sk5n7X86AZSNvb9IeDOm-Vd2YdK3ikTl9U3L7T5g",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZWFlN2Y3MTVlZDVkM2MyYzk4YjUyNjgiLCJyb2xlIjoic3RhZmYiLCJ0eXBlIjoicmVmcmVzaCIsImlhdCI6MTU4ODQ5NTA4MX0.sFcB-RKUiNcAInhRcCslEqTBYRnQYmIrPmPxNB1XpYE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/sessions",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"sessions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZWFlN2Y3MTVlZDVkM2MyYzk4YjUyNjgiLCJyb2xlIjoic3RhZmYiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNTg4NDk1MDgxLCJleHAiOjE1ODg0OTg2ODF9.aSWsyJ_BxGlGUoGiVwco3R1-9_maJn4et_OXqSRsO5I",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/logout",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Loan",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZWFlOGU0ZjI4Njk0MWNmYjdiZDk0ZGEiLCJyb2xlIjoic3RhZmYiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNTg4NDk3OTk5LCJleHAiOjE1ODg1MDE1OTl9.nR0jNASnenljHY3Ehx8uSmTlR6TJuCcOCOJvK-pz0fE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\": 30002,\n\t\"date\": \"2020-05-04T15:00:00.000Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/loans",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"loans"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Loan",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZWFlN2Y3MTVlZDVkM2MyYzk4YjUyNjgiLCJyb2xlIjoic3RhZmYiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNTg4NDk2ODk1LCJleHAiOjE1ODg1MDA0OTV9.xU9P1suI5I_n6AAR5-_baPDtWojbB4ZvJa9-L6mY1lk",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n            \"amount\": 33333\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/loans/5eae8c5540b612ccfb241444",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"loans",
+						"5eae8c5540b612ccfb241444"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Staff Loans",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZWFlN2Y3MTVlZDVkM2MyYzk4YjUyNjgiLCJyb2xlIjoic3RhZmYiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNTg4NDk2ODk1LCJleHAiOjE1ODg1MDA0OTV9.xU9P1suI5I_n6AAR5-_baPDtWojbB4ZvJa9-L6mY1lk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/loans",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"loans"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Loan",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZWFlN2Y3MTVlZDVkM2MyYzk4YjUyNjgiLCJyb2xlIjoic3RhZmYiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNTg4NDk2ODk1LCJleHAiOjE1ODg1MDA0OTV9.xU9P1suI5I_n6AAR5-_baPDtWojbB4ZvJa9-L6mY1lk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/loans/5eae9332e6e47ed20825a5fe",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"loans",
+						"5eae9332e6e47ed20825a5fe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Repay",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZWFlOGU0ZjI4Njk0MWNmYjdiZDk0ZGEiLCJyb2xlIjoic3RhZmYiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNTg4NDk3OTk5LCJleHAiOjE1ODg1MDE1OTl9.nR0jNASnenljHY3Ehx8uSmTlR6TJuCcOCOJvK-pz0fE"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\": 30004,\n\t\"date\": \"2020-05-04T15:00:00.000Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/repays",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"repays"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Repay",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZWFlN2Y3MTVlZDVkM2MyYzk4YjUyNjgiLCJyb2xlIjoic3RhZmYiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNTg4NDk4MDc2LCJleHAiOjE1ODg1MDE2NzZ9.taWZB2qaCwPFCe8Kn5xPb1NZzBzq0RK0OafcoaX3orI"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/repays/5eae8df1a82dabcf986d9ba2",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"repays",
+						"5eae8df1a82dabcf986d9ba2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Repays",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZWFlOGU0ZjI4Njk0MWNmYjdiZDk0ZGEiLCJyb2xlIjoic3RhZmYiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNTg4NDk3OTk5LCJleHAiOjE1ODg1MDE1OTl9.nR0jNASnenljHY3Ehx8uSmTlR6TJuCcOCOJvK-pz0fE",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/repays",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"repays"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List All Loans",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZDkzNzFlN2YtMzZjYy00YmY3LTlhMDMtNmRmMTQ1NzEzNTM0Iiwicm9sZSI6ImFkbWluIiwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTU4ODQzNTY4MSwiZXhwIjoxNTg4NDM5MjgxfQ.Vuf-XH1-bIuBiJkqLYzCnHaLDMrz9Fam6mYvYoOFKwY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/admin/loans",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"admin",
+						"loans"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List All Repay",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZDkzNzFlN2YtMzZjYy00YmY3LTlhMDMtNmRmMTQ1NzEzNTM0Iiwicm9sZSI6ImFkbWluIiwidHlwZSI6ImFjY2VzcyIsImlhdCI6MTU4ODQzNTY4MSwiZXhwIjoxNTg4NDM5MjgxfQ.Vuf-XH1-bIuBiJkqLYzCnHaLDMrz9Fam6mYvYoOFKwY"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/admin/repays",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"admin",
+						"repays"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Sessions",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZWFlN2Y3MTVlZDVkM2MyYzk4YjUyNjgiLCJyb2xlIjoic3RhZmYiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNTg4NDk1MDgxLCJleHAiOjE1ODg0OTg2ODF9.aSWsyJ_BxGlGUoGiVwco3R1-9_maJn4et_OXqSRsO5I",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/sessions",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"sessions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Repay",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZWFlN2Y3MTVlZDVkM2MyYzk4YjUyNjgiLCJyb2xlIjoic3RhZmYiLCJ0eXBlIjoiYWNjZXNzIiwiaWF0IjoxNTg4NDk4MDc2LCJleHAiOjE1ODg1MDE2NzZ9.taWZB2qaCwPFCe8Kn5xPb1NZzBzq0RK0OafcoaX3orI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\": 444\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/repays/5eae8e35286941cfb7bd94d8",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"repays",
+						"5eae8e35286941cfb7bd94d8"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
