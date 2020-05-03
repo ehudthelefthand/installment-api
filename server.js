@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const userRoute = require("./routes/user");
 const loanRoute = require("./routes/loan");
@@ -16,7 +17,7 @@ const {
 } = process.env;
 
 const url = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}?authSource=admin`;
-console.log(url);
+// const url = `mongodb://localhost/vuejsclass`;
 mongoose.connect(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -32,6 +33,7 @@ const port = 3001;
 // It is used for illustrate the simple structure of the appliction
 // And authentication flow
 
+app.use(cors());
 app.use(
   bodyParser.urlencoded({
     extended: true,
