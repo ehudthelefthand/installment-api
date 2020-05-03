@@ -16,12 +16,10 @@ const {
 } = process.env;
 
 const url = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}?authSource=admin`;
+console.log(url);
 mongoose.connect(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  reconnectTries: Number.MAX_VALUE,
-  reconnectInterval: 500,
-  connectTimeoutMS: 10000,
 });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
