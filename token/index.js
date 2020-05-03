@@ -3,8 +3,8 @@ const jwt = require("jsonwebtoken");
 // In real world product, the key should be injected via configuration or enviroment variable
 const key = "secret";
 
-const generateToken = ({ user_id, role, type }, exp) => {
-  const claims = { user_id, role, type };
+const generateToken = ({ userID, role, type }, exp) => {
+  const claims = { userID, role, type };
   const options = {};
   if (exp) {
     options.expiresIn = exp;
@@ -12,12 +12,12 @@ const generateToken = ({ user_id, role, type }, exp) => {
   return jwt.sign(claims, key, options);
 };
 
-const generateRefreshToken = ({ user_id, role }) => {
-  return generateToken({ user_id, role, type: "refresh" });
+const generateRefreshToken = ({ userID, role }) => {
+  return generateToken({ userID, role, type: "refresh" });
 };
 
-const generateAccessToken = ({ user_id, role }) => {
-  return generateToken({ user_id, role, type: "access" }, "1h");
+const generateAccessToken = ({ userID, role }) => {
+  return generateToken({ userID, role, type: "access" }, "1h");
 };
 
 const verifyToken = (token) => {

@@ -14,26 +14,26 @@ const init = (app) => {
   app.use("/staffs", router);
 
   router.post("/", async (req, res, next) => {
-    const { name, username, password } = req.body;
+    const { name, username, password, isAdmin } = req.body;
     try {
       const passwordHash = await bcrypt.hash(password, cost);
       const staff = new User({
         name,
         username,
         password: passwordHash,
-        role: ROLE.STAFF,
+        role: isAdmin ? ROLE.ADMIN : ROLE.STAFF,
       });
       await staff.save();
       const refreshToken = Token.generateRefreshToken({
         userID: staff._id,
-        role: ROLE.STAFF,
+        role: staff.role,
       });
       staff.refreshToken = refreshToken;
       await staff.save();
 
       const accessToken = Token.generateAccessToken({
         userID: staff._id,
-        role: ROLE.STAFF,
+        role: staff.role,
       });
       res.json({
         data: {
