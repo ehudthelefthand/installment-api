@@ -51,6 +51,7 @@ const init = (app) => {
   });
 
   router.get("/:id", async (req, res, next) => {
+    const id = req.params.id;
     try {
       const staff = await User.findById(id).exec();
       res.json({

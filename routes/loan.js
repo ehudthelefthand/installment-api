@@ -1,67 +1,75 @@
 const express = require("express");
+const Auth = require("../mw/auth");
+const Loan = require("../models/loan");
 
 const init = (app) => {
   const router = express.Router();
   app.use("/loans", router);
 
-  // router.post("/", auth.requiredUser, async (req, res, next) => {
-  //   const user = req.User;
-  //   const { amount, date } = req.body;
-  //   let loan = {
-  //     staffID: user.id,
-  //     amount,
-  //     date,
-  //   };
-  //   try {
-  //     loan = await loanDB.create(loan);
-  //     res.json({
-  //       data: { ...loan },
-  //     });
-  //   } catch (e) {
-  //     next(e);
-  //   }
-  // });
+  router.post("/", Auth.requiredStaff, async (req, res, next) => {
+    const user = req.User;
+    const { amount, date } = req.body;
+    try {
+      const loan = new Loan({
+        amount,
+        date,
+        loaner: user,
+      });
+      await loan.save();
+      res.json({
+        data: {
+          _id: loan._id,
+          amount: loan.amount,
+          date: loan.date,
+        },
+      });
+    } catch (e) {
+      next(e);
+    }
+  });
 
-  // router.patch("/:id", auth.requiredUser, async (req, res, next) => {
-  //   const user = req.User;
-  //   const loanID = req.params.id;
-  //   const { amount, date } = req.body;
-  //   const loan = {
-  //     staffID: user.id,
-  //     loanID,
-  //     amount,
-  //     date,
-  //   };
-  //   try {
-  //     await loanDB.update(loan);
-  //     res.sendStatus(204);
-  //   } catch (e) {
-  //     next(e);
-  //   }
-  //   res.json({ data: [] });
-  // });
+  router.patch("/:id", Auth.requiredStaff, async (req, res, next) => {
+    const id = req.params.id;
+    const { amount, date } = req.body;
+    try {
+      const loan = await Loan.findById(id).exec();
+      if (amount) {
+        loan.amount = amount;
+      }
+      if (date) {
+        loan.date = date;
+      }
+      await loan.save();
+      res.sendStatus(204);
+    } catch (e) {
+      next(e);
+    }
+    res.json({ data: [] });
+  });
 
-  // router.get("/", auth.requiredUser, async (req, res, next) => {
-  //   const user = req.User;
-  //   try {
-  //     const loans = await loanDB.listByStaffID(user.id);
-  //     res.json({
-  //       data: loans,
-  //     });
-  //   } catch (e) {
-  //     next(e);
-  //   }
-  // });
+  router.get("/", Auth.requiredStaff, async (req, res, next) => {
+    const user = req.User;
+    try {
+      const loans = await Loan.find({
+        loaner: user.id,
+      }).exec();
+      res.json({
+        data: loans.map(({ _id, amount, date }) => ({ _id, amount, date })),
+      });
+    } catch (e) {
+      next(e);
+    }
+  });
 
-  // router.delete("/:id", auth.requiredUser, async (req, res, next) => {
-  //   const user = req.User;
-  //   const loanID = req.params.id;
-  //   try {
-  //     await loanDB.remove({ staffID: user.id, loanID });
-  //   } catch (e) {
-  //     next(e);
-  //   }
-  // });
+  router.delete("/:id", Auth.requiredStaff, async (req, res, next) => {
+    const id = req.params.id;
+    try {
+      await Loan.deleteOne({ _id: id }).exec();
+      res.sendStatus(204);
+    } catch (e) {
+      next(e);
+    }
+  });
 };
 
 module.exports = {

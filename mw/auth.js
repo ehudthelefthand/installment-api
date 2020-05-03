@@ -2,7 +2,7 @@ const Token = require("../token");
 const User = require("../models/user");
 
 const requiredAdmin = async (req, res, next) => {
-  const claims = validateReq(req);
+  const claims = validateReq(req, res);
   if (claims.role !== "admin" || claims.type !== "access") {
     return res.sendStatus(401);
   }
@@ -20,7 +20,7 @@ const requiredAdmin = async (req, res, next) => {
 };
 
 const requiredStaff = async (req, res, next) => {
-  const claims = validateReq(req);
+  const claims = validateReq(req, res);
   if (claims.role !== "staff" || claims.type !== "access") {
     return res.sendStatus(401);
   }
@@ -38,7 +38,7 @@ const requiredStaff = async (req, res, next) => {
 };
 
 const requiredUser = async (req, res, next) => {
-  const claims = validateReq(req);
+  const claims = validateReq(req, res);
   if (claims.type !== "access") {
     return res.sendStatus(401);
   }
@@ -55,7 +55,7 @@ const requiredUser = async (req, res, next) => {
   }
 };
 
-const validateReq = (req) => {
+const validateReq = (req, res) => {
   const tk = getToken(req);
   if (!tk) {
     return res.sendStatus(401);
