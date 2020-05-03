@@ -37,7 +37,9 @@ const init = (app) => {
       });
       res.json({
         data: {
+          _id: staff._id,
           name: staff.name,
+          username: staff.username,
           role: staff.role,
           refreshToken: staff.refreshToken,
           accessToken,
@@ -75,10 +77,14 @@ const init = (app) => {
   });
 
   router.patch("/:id", async (req, res, next) => {
-    const staffID = req.params["id"];
-    const { password } = req.body;
+    const id = req.params.id;
+    const { name, password } = req.body;
     try {
-      await userDB.updatePassword({ id: staffID, password });
+      const passwordHash = await bcrypt.hash(password, cost);
+      const user = await User.findById(id).exec();
+      user.name = name;
+      user.password = passwordHash;
+      await user.save();
       res.sendStatus(204);
     } catch (e) {
       next(e);
@@ -86,9 +92,8 @@ const init = (app) => {
   });
 
   router.delete("/:id", async (req, res, next) => {
-    const staffID = req.params["id"];
     try {
-      await userDB.remove(staffID);
+      await User.deleteOne({ _id: id });
       res.sendStatus(204);
     } catch (e) {
       next(e);
