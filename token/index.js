@@ -17,7 +17,7 @@ const generateRefreshToken = ({ userID, role }) => {
 };
 
 const generateAccessToken = ({ userID, role }) => {
-  return generateToken({ userID, role, type: "access" }, 300000); // 300000 ms = 5 mins
+  return generateToken({ userID, role, type: "access" }, 60 * 5); // 300s = 5 mins
 };
 
 const verifyToken = (token) => {
